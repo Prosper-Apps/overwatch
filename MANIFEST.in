@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include overwatch *.css
+recursive-include overwatch *.csv
+recursive-include overwatch *.html
+recursive-include overwatch *.ico
+recursive-include overwatch *.js
+recursive-include overwatch *.json
+recursive-include overwatch *.md
+recursive-include overwatch *.png
+recursive-include overwatch *.py
+recursive-include overwatch *.svg
+recursive-include overwatch *.txt
+recursive-exclude overwatch *.pyc
