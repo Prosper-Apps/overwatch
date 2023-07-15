@@ -1,0 +1,49 @@
+---
+- hosts: production
+  vars:
+    site_name: "{{ site_name }}"
+    db_root_password: "{{ db_root_password }}"
+    admin_password: "{{ admin_password }}"
+  tasks:
+    - name: Create new Frappe site
+      shell: |
+        echo "Creating site {{ site_name }}"
+        export SITE_NAME={{ site_name }}
+        export SQL_PASSWD={{ db_root_password }}
+        export ADMIN_PASSWD={{ admin_password }}
+
+        expect <<-EOF
+        spawn bench new-site $SITE_NAME
+        expect "MySQL root password:"
+        send "$SQL_PASSWD\r"
+        expect "Set Administrator password:"
+        sleep 20
+        send "$ADMIN_PASSWD\r"
+        expect "Re-enter Administrator password:"
+        sleep 20
+        send "$ADMIN_PASSWD\r"
+        expect eof
+        EOF
+      args:
+        executable: /bin/bash
+        chdir: /home/flexy/frappe-bench  # add this line
+    
+    - name: Install ERPNext
+      shell: |
+        bench --site {{ site_name }} install-app erpnext
+      args:
+        executable: /bin/bash
+        chdir: /home/flexy/frappe-bench
+
+    - name: Setup Nginx
+      shell: |
+        yes | bench setup nginx
+      args:
+        executable: /bin/bash
+        chdir: /home/flexy/frappe-bench
+      
+    - name: Reload Nginx
+      shell: |
+        sudo service nginx reload
+      args:
+        executable: /bin/bash

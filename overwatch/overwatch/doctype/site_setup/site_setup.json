@@ -1,0 +1,75 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-14 09:08:54.839569",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "agent",
+  "server_agent",
+  "bench_directory",
+  "site_name",
+  "db_root_password",
+  "admin_password"
+ ],
+ "fields": [
+  {
+   "fieldname": "agent",
+   "fieldtype": "Link",
+   "label": "Agent",
+   "options": "Agent"
+  },
+  {
+   "fieldname": "site_name",
+   "fieldtype": "Data",
+   "label": "Site Name"
+  },
+  {
+   "fieldname": "db_root_password",
+   "fieldtype": "Data",
+   "label": "Root Password"
+  },
+  {
+   "fieldname": "admin_password",
+   "fieldtype": "Data",
+   "label": "Administrator Password"
+  },
+  {
+   "fieldname": "bench_directory",
+   "fieldtype": "Data",
+   "label": "Bench Directory"
+  },
+  {
+   "fetch_from": "agent.agent_address",
+   "fieldname": "server_agent",
+   "fieldtype": "Data",
+   "label": "Agent URL"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-07-15 12:58:38.773817",
+ "modified_by": "Administrator",
+ "module": "Overwatch",
+ "name": "Site Setup",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
